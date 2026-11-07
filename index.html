@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+  <meta name="theme-color" content="#080b0f" />
+  <title>OUTER WATCH — Nodija-7</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <main id="game-shell">
+    <canvas id="scene" aria-label="Вид от первого лица"></canvas>
+    <div class="grain"></div><div class="vignette"></div><div id="flash" class="flash"></div>
+    <header class="topbar">
+      <div class="brand"><span class="brand-mark">◈</span><span>OUTER <b>WATCH</b></span><i>НOДИЯ—7</i></div>
+      <div class="mission"><span class="live-dot"></span><span id="mission-text">СИСТЕМА ПРОБУЖДЕНА</span></div>
+      <div class="top-actions"><button id="lang-btn" class="text-btn">EN</button><button id="pause-btn" class="icon-btn" aria-label="Меню">Ⅱ</button></div>
+    </header>
+    <section class="hud-left">
+      <div class="location-kicker" id="deck-label">СЕКТОР 01 · КРИОКАМЕРА</div>
+      <div class="location-name" id="location-name">Пробуждение</div>
+      <div class="objective"><span class="objective-icon">⌁</span><div><small id="objective-caption">ТЕКУЩАЯ ЦЕЛЬ</small><strong id="objective-text">Осмотреть терминал у капсулы</strong></div></div>
+      <div class="stats">
+        <div class="stat"><div class="stat-head"><span>O₂</span><span id="oxygen-value">68%</span></div><div class="bar"><i id="oxygen-bar" class="oxygen"></i></div></div>
+        <div class="stat"><div class="stat-head"><span id="energy-label">ЭНЕРГИЯ</span><span id="energy-value">42%</span></div><div class="bar"><i id="energy-bar" class="energy"></i></div></div>
+        <div class="stat"><div class="stat-head"><span id="health-label">СОСТОЯНИЕ</span><span id="health-value">100%</span></div><div class="bar"><i id="health-bar" class="health"></i></div></div>
+      </div>
+    </section>
+    <aside class="hud-right"><div class="clock-label" id="clock-label">МИССИЯ · ОСТАЛОСЬ</div><div class="clock"><span id="days">30</span><small id="days-unit">ДНЕЙ</small></div><div class="watchline"><span class="live-dot"></span><span id="watch-text">НАБЛЮДЕНИЕ АКТИВНО</span></div></aside>
+    <div class="crosshair"><i></i><b></b></div>
+    <div id="hint" class="interaction-hint"><span class="keycap">E</span><span id="hint-text">Взаимодействовать</span></div>
+    <div id="subtitle" class="subtitle hidden"><span>◈ ORACLE</span><p></p></div>
+    <div class="bottom-left"><span class="sound-bars"><i></i><i></i><i></i><i></i></span><span id="ambience-label">ВЕНТИЛЯЦИЯ · СЕКТОР 01</span></div>
+    <div class="bottom-right"><button id="tablet-btn" class="tablet-button"><span>▤</span><span id="tablet-label">ПЛАНШЕТ</span><kbd>TAB</kbd></button><span class="controls-hint" id="controls-hint">WASD ДВИЖЕНИЕ &nbsp;·&nbsp; MOUSE ОБЗОР &nbsp;·&nbsp; SHIFT ШАГ</span></div>
+    <div id="toast" class="toast"></div>
+
+    <section id="title-screen" class="screen visible">
+      <div class="title-copy"><div class="eyebrow"><span class="live-dot"></span><span>ЗАПИСЬ 00:01:14 · ЭКИПАЖ НЕ ОТВЕЧАЕТ</span></div><h1>OUTER<br><em>WATCH</em></h1><p id="title-sub">Некому прийти на помощь.<br>И не всему можно верить.</p><div class="title-rule"></div><div class="title-meta"><span>НAУЧНАЯ ФАНТАСТИКА · ПСИХОЛОГИЧЕСКИЙ ХОРРОР</span><span>НОДИЯ—7 &nbsp; / &nbsp; 30 ДНЕЙ ДО СПАСЕНИЯ</span></div><button id="start-btn" class="primary-button"><span id="start-label">ПРОСНУТЬСЯ</span><span>↗</span></button><button id="continue-btn" class="continue-button hidden">ПРОДОЛЖИТЬ ЗАПИСЬ</button><div class="title-foot">ИСПОЛЬЗУЙТЕ НАУШНИКИ &nbsp;·&nbsp; СОХРАНЕНИЕ АВТОМАТИЧЕСКОЕ</div></div>
+      <div class="title-art"><div class="orbit orbit-a"></div><div class="orbit orbit-b"></div><div class="station-art"><div class="station-core"></div><div class="station-arm arm-a"></div><div class="station-arm arm-b"></div><div class="station-wing wing-a"></div><div class="station-wing wing-b"></div><div class="station-light"></div></div><span class="art-coordinate">71° 24′ N<br>ORBITAL ALT. 408 KM</span><span class="art-signal">SIGNAL LOST<br>— 6,402 HRS —</span></div>
+    </section>
+
+    <section id="tablet" class="tablet-panel hidden"><div class="tablet-top"><div><small id="tablet-overline">ПЕРСОНАЛЬНЫЙ ТЕРМИНАЛ</small><h2 id="tablet-title">Бортовой журнал</h2></div><button id="close-tablet" class="close-btn">×</button></div><nav class="tabs"><button class="tab active" data-tab="map" id="tab-map">СХЕМА</button><button class="tab" data-tab="logs" id="tab-logs">ЗАПИСИ <span id="log-count">00</span></button><button class="tab" data-tab="tasks" id="tab-tasks">ЗАДАЧИ</button><button class="tab" data-tab="status" id="tab-status">СИСТЕМЫ</button></nav><div id="tab-content" class="tab-content"></div><div class="tablet-foot"><span>НOДИЯ—7 · ВНУТРЕННЯЯ СЕТЬ</span><span>ESC / TAB · ЗАКРЫТЬ</span></div></section>
+
+    <section id="modal" class="modal hidden"><div class="modal-card"><div class="modal-mark">◈ <span id="modal-tag">ЛИЧНАЯ ЗАПИСЬ</span></div><h2 id="modal-title">Сообщение</h2><div id="modal-body" class="modal-body"></div><div id="modal-actions" class="modal-actions"></div><div class="modal-foot">НОДИЯ—7 &nbsp;·&nbsp; ВОССТАНОВЛЕНИЕ ФРАГМЕНТА</div></div></section>
+    <section id="pause-screen" class="screen pause-screen"><div class="pause-box"><div class="eyebrow">ВНЕШНИЙ КАНАЛ · СВЯЗЬ НЕ СТАБИЛЬНА</div><h2 id="pause-title">Пауза</h2><p id="pause-copy">Оракул всё ещё слушает.</p><button id="resume-btn" class="primary-button"><span id="resume-label">ВЕРНУТЬСЯ</span><span>↗</span></button><button id="save-btn" class="quiet-button">СОХРАНИТЬ ЗАПИСЬ</button><button id="restart-btn" class="quiet-button">НАЧАТЬ ЗАНОВО</button></div></section>
+    <section id="ending-screen" class="screen ending-screen"><div class="ending-box"><div class="eyebrow" id="ending-eyebrow">ЗАПИСЬ ЗАВЕРШЕНА</div><h2 id="ending-title">Сигнал</h2><p id="ending-copy"></p><div id="ending-stats" class="ending-stats"></div><button id="again-btn" class="primary-button"><span id="again-label">НОВАЯ СМЕНА</span><span>↗</span></button></div></section>
+  </main>
+  <script src="game.js"></script>
+</body>
+</html>
