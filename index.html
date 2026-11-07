@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+  <meta name="theme-color" content="#050a12">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Ccircle cx='20' cy='20' r='16' fill='%238ce5e4'/%3E%3Cpath d='M20 6v28M6 20h28M10 10l20 20m0-20L10 30' stroke='%23050a12' stroke-width='3'/%3E%3C/svg%3E">
+  <title>Eventide — Deep Space Repair</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main id="game">
+    <canvas id="scene" aria-label="3D deep space game"></canvas>
+    <div class="vignette"></div>
+    <header class="topbar">
+      <div class="brand"><span class="brand-mark">✳</span><span>EVENTIDE</span><small>DEEP SPACE / 07</small></div>
+      <div class="mission-tag"><i class="live-dot"></i><span>MISSION ACTIVE</span><b>BLACK REACH</b></div>
+      <button id="soundBtn" class="icon-btn" aria-label="Toggle sound">♫</button>
+    </header>
+    <section class="hud-left">
+      <div class="readout"><span>VESSEL INTEGRITY</span><strong id="hullText">62<small>%</small></strong><div class="meter"><i id="hullBar" style="width:62%"></i></div></div>
+      <div class="readout oxygen-read"><span>SUIT OXYGEN</span><strong id="oxygenText">100<small>%</small></strong><div class="meter cyan"><i id="oxygenBar" style="width:100%"></i></div></div>
+      <div class="mode-pill"><span class="mode-dot"></span><span id="modeText">PILOTING</span></div>
+    </section>
+    <section class="objective" id="objective">
+      <div class="obj-kicker"><span>PRIMARY OBJECTIVE</span><span id="stepCount">01 / 03</span></div>
+      <div class="obj-title" id="objTitle">Restore the hull</div>
+      <div class="obj-desc" id="objDesc">Exit the ship and repair the damaged panels.</div>
+      <div class="objective-progress"><span id="progressText">0 of 3 systems restored</span><div class="progress-track"><i id="progressBar"></i></div></div>
+    </section>
+    <div class="target-marker" id="targetMarker"><span class="target-bracket">⌖</span><span id="targetLabel">HULL PANEL</span><b id="targetDistance">18 m</b></div>
+    <div class="reticle" id="reticle"><i></i></div>
+    <div class="action-hint" id="actionHint"><kbd>F</kbd><span>REPAIR HULL</span></div>
+    <div class="toast" id="toast">HULL PANEL RESTORED</div>
+    <div class="warning" id="warning"><span>⚠</span> QUASAR RADIATION — RETURN TO VESSEL</div>
+    <div class="nav-bottom">
+      <div class="coordinates"><span>SECTOR 09·A</span><b id="coords">X +042 · Y -018</b></div>
+      <div class="tether"><span>TETHER</span><div class="tether-line"><i></i></div><b id="tetherText">18m</b></div>
+      <div class="velocity"><span>VELOCITY</span><b id="speedText">0.0 <small>m/s</small></b></div>
+    </div>
+    <div class="touch-controls" id="touchControls">
+      <div class="joystick" id="joystick"><div class="joy-knob" id="joyKnob"></div><span class="joy-up">↑</span><span class="joy-down">↓</span></div>
+      <div class="touch-actions"><button id="boostBtn" class="touch-btn">BOOST</button><button id="repairBtn" class="touch-btn primary-action">REPAIR</button><button id="exitBtn" class="touch-btn">BOARD</button></div>
+      <div class="look-hint">DRAG TO LOOK</div>
+    </div>
+    <section class="intro" id="intro">
+      <div class="intro-card">
+        <div class="eyebrow"><i class="live-dot"></i> FRONTIER SALVAGE // FLIGHT 071</div>
+        <h1>Alone at the<br><em>edge of forever.</em></h1>
+        <p>Your ship is failing. A black hole bends the stars ahead, and a quasar is waking. Get outside, repair your ship, and make it back.</p>
+        <div class="intro-stats"><div><span>LOCATION</span><b>THE BLACK REACH</b></div><div><span>HAZARD</span><b class="hazard">QUASAR FLARE</b></div><div><span>MISSION</span><b>HULL REPAIR</b></div></div>
+        <button id="startBtn" class="start-btn">BEGIN EVA <span>↗</span></button>
+        <div class="controls-copy"><b>W A S D</b> move <b>SPACE / SHIFT</b> up / down <b>F</b> repair <b>E</b> board</div>
+      </div>
+      <div class="intro-foot"><span>HELMET CAM 01</span><span>NO SIGNAL · NO BACKUP</span></div>
+    </section>
+    <section class="end-screen hidden" id="endScreen"><div class="end-card"><div class="eyebrow">MISSION COMPLETE · BLACK REACH</div><h2>You made it<br><em>back alive.</em></h2><p>Hull sealed. Quasar survived. The stars are yours again.</p><button id="restartBtn" class="start-btn">FLY AGAIN <span>↗</span></button></div></section>
+    <div class="scanline"></div>
+  </main>
+  <script type="module" src="game.js"></script>
+</body>
+</html>
